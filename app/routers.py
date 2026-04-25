@@ -275,3 +275,42 @@ async def create_notification(
 @router.get("/health")
 async def health():
     return {"status": "ok", "service": "notifications"}
+
+
+# ── Email API (called by Agent Engine tools: gmail_send, send_email) ──
+
+email_router = APIRouter(prefix="/email", tags=["email"])
+
+
+class EmailSendRequest(BaseModel):
+    to: str
+    subject: str
+    body: str
+    cc: Optional[str] = None
+    bcc: Optional[str] = None
+
+
+@email_router.post("/send")
+async def send_email(req: EmailSendRequest):
+    """Send an email via SMTP. Used by Agent Engine's gmail_send / send_email tools."""
+    from .email_sender import email_sender
+    cc_list = [e.strip() for e in req.cc.split(",") if e.strip()] if req.cc else None
+    bcc_list = [e.strip() for e in req.bcc.split(",") if e.strip()] if req.bcc else None
+    html_body = req.body.replace("\n", "<br>")
+    ok = await email_sender.send_email(
+        to_email=req.to,
+        subject=req.subject,
+        html_content=html_body,
+        text_content=req.body,
+        cc=cc_list,
+        bcc=bcc_list,
+    )
+    if ok:
+        return {"success": True, "to": req.to, "subject": req.subject}
+    return {"error": "Email delivery failed. Check SMTP configuration."}
+
+
+@email_router.get("/inbox")
+async def read_inbox():
+    """Placeholder for reading inbox — requires IMAP integration."""
+    return {"error": "Email inbox reading not yet implemented. Use Gmail API via Google OAuth instead."}

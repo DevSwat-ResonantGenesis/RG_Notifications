@@ -3,7 +3,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
  
-from .routers import router as notifications_router
+from .routers import router as notifications_router, email_router
 
 # Deterministic sys.path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -27,6 +27,7 @@ app.add_middleware(
 )
 
 app.include_router(notifications_router)
+app.include_router(email_router)
 
 # Health check endpoint
 @app.get("/health")
