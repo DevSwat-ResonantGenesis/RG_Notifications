@@ -1,6 +1,6 @@
 # RG Notifications
 
-> **Part of the [ResonantGenesis](https://dev-swat.com) platform** — Notification delivery and management service.
+> **Part of the [ResonantGenesis](https://resonant.dev-swat.com) platform** — Notification delivery and management service.
 
 [![Status: Production](https://img.shields.io/badge/Status-Production-brightgreen.svg)]()
 [![Port: 8000](https://img.shields.io/badge/Port-8000-orange.svg)]()
@@ -24,4 +24,4 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 - **Docker service**: `notification_service`
 
 ---
-**Organization**: [DevSwat-ResonantGenesis](https://github.com/DevSwat-ResonantGenesis) | **Platform**: [dev-swat.com](https://dev-swat.com)
+**Organization**: [DevSwat-ResonantGenesis](https://github.com/DevSwat-ResonantGenesis) | **Platform**: [resonant.dev-swat.com](https://resonant.dev-swat.com)

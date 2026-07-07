@@ -298,7 +298,7 @@ class EmailDeliveryService:
     Handles provider selection, retries, and fallbacks.
     """
     
-    DEFAULT_FROM_EMAIL = "info@dev-swat.com"
+    DEFAULT_FROM_EMAIL = "info@resonant.dev-swat.com"
     DEFAULT_FROM_NAME = "DevSwat"
     MAX_RETRIES = 3
     
