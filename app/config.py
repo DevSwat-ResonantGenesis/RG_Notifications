@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     SMTP_PORT: int = 587
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
-    EMAIL_FROM: str = "info@resonant.dev-swat.com"
+    EMAIL_FROM: str = "info@dev-swat.com"
     EMAIL_FROM_NAME: str = "DevSwat"
     
     # Database - use Docker service name in production
